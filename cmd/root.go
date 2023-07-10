@@ -1,6 +1,5 @@
 /*
 Copyright © 2023 Allan Capistrano <allan.capistrano3@gmail.com>
-
 */
 package cmd
 
@@ -48,10 +47,10 @@ following the Conventional Commits  (https://www.conventionalcommits.org/).`,
 		}
 
 		commandString := fmt.Sprintf(
-			`git commit "%s: %s"`, commitType, commitMessage,
+			`git commit -m "%s: %s"`, commitType, commitMessage,
 		)
 
-		command := exec.Command(commandString)
+		command := exec.Command("/bin/bash", "-c", commandString)
 
 		err = command.Run()
 		if err != nil {

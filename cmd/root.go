@@ -17,8 +17,9 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gbc",
 	Short: "Simple CLI in Go for writing better commits.",
-	Long: `A CLI written in Golang that provides a simple way to write commits 
-following the Conventional Commits  (https://www.conventionalcommits.org/).`,
+	Long: `Git Better Commit (gbc) is a CLI written in Golang that provides a 
+simple way to write commits following the Conventional Commits 
+(https://www.conventionalcommits.org/).`,
 	Run: func(cmd *cobra.Command, args []string) {
 		commitTypeMenu := gocliselect.NewMenu("Commit type?")
 

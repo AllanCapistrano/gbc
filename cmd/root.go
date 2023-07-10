@@ -1,5 +1,5 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+Copyright © 2023 Allan Capistrano <allan.capistrano3@gmail.com>
 */
 package cmd
 
@@ -17,8 +17,6 @@ var rootCmd = &cobra.Command{
 	Short: "Simple CLI in Go for writing better commits.",
 	Long: `A CLI written in Golang that provides a simple way to write commits 
 following the Conventional Commits  (https://www.conventionalcommits.org/).`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) { 
 		menu := gocliselect.NewMenu("Commit type?")
 

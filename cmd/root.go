@@ -1,10 +1,14 @@
 /*
 Copyright © 2023 Allan Capistrano <allan.capistrano3@gmail.com>
+
 */
 package cmd
 
 import (
+	"bufio"
+	"fmt"
 	"os"
+	"os/exec"
 
 	"github.com/nexidian/gocliselect"
 	"github.com/spf13/cobra"
@@ -31,6 +35,28 @@ following the Conventional Commits  (https://www.conventionalcommits.org/).`,
 		commitTypeMenu.AddItem("Perf", "perf")
 
 		commitType := commitTypeMenu.Display()
+
+		buffer := bufio.NewReader(os.Stdin)
+
+		fmt.Print("What commit message do you want? ")
+
+		commitMessage, err := buffer.ReadString('\n')
+		if err != nil {
+			fmt.Println("Unable to read commit message! Try again.")
+
+			os.Exit(0)
+		}
+
+		commandString := fmt.Sprintf(
+			`git commit "%s: %s"`, commitType, commitMessage,
+		)
+
+		command := exec.Command(commandString)
+
+		err = command.Run()
+		if err != nil {
+			panic(err)
+		}
 	},
 }
 

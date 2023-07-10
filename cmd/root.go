@@ -42,7 +42,6 @@ following the Conventional Commits  (https://www.conventionalcommits.org/).`,
 		commitMessage, err := buffer.ReadString('\n')
 		if err != nil {
 			fmt.Println("Unable to read commit message! Try again.")
-
 			os.Exit(0)
 		}
 
@@ -54,7 +53,10 @@ following the Conventional Commits  (https://www.conventionalcommits.org/).`,
 
 		err = command.Run()
 		if err != nil {
-			panic(err)
+			fmt.Println(
+				"\nCould not create the commit! Make sure you have files to commit.",
+			)
+			os.Exit(0)
 		}
 	},
 }

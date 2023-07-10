@@ -4,7 +4,6 @@ Copyright © 2023 Allan Capistrano <allan.capistrano3@gmail.com>
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/nexidian/gocliselect"
@@ -17,35 +16,21 @@ var rootCmd = &cobra.Command{
 	Short: "Simple CLI in Go for writing better commits.",
 	Long: `A CLI written in Golang that provides a simple way to write commits 
 following the Conventional Commits  (https://www.conventionalcommits.org/).`,
-	Run: func(cmd *cobra.Command, args []string) { 
-		menu := gocliselect.NewMenu("Commit type?")
+	Run: func(cmd *cobra.Command, args []string) {
+		commitTypeMenu := gocliselect.NewMenu("Commit type?")
 
-		menu.AddItem("feat", "a commit that adds new functionality to Uno.")
-		menu.AddItem("fix", "a commit that fixes a bug in Uno.")
-		menu.AddItem(
-			"chore", 
-			`a catch-all type for any other commits. For 
-			instance, if you're implementing a single feature and it makes sense 
-			to divide the work into multiple commits, you should mark one commit 
-			as feat and the rest as chore.`,
-		)
-		menu.AddItem("refactor", "a commit that refactor a functionality.")
-		menu.AddItem("test", "a commit that adds tests.")
-		menu.AddItem(
-			"docs", 
-			"a commit that adds or improves Uno's documentation.",
-		)
-		menu.AddItem("style", "cyan")
-		menu.AddItem("build", "cyan")
-		menu.AddItem("ci", "cyan")
-		menu.AddItem(
-			"perf", 
-			"a commit that improves performance, without functional changes.",
-		)
+		commitTypeMenu.AddItem("Feat", "feat")
+		commitTypeMenu.AddItem("Fix", "fix")
+		commitTypeMenu.AddItem("Chore", "chore")
+		commitTypeMenu.AddItem("Refactor", "refactor")
+		commitTypeMenu.AddItem("Test", "test")
+		commitTypeMenu.AddItem("Docs", "docs")
+		commitTypeMenu.AddItem("Style", "style")
+		commitTypeMenu.AddItem("Build", "build")
+		commitTypeMenu.AddItem("CI", "ci")
+		commitTypeMenu.AddItem("Perf", "perf")
 
-		choice := menu.Display()
-
-		fmt.Printf("Choice: %s\n", choice)
+		commitType := commitTypeMenu.Display()
 	},
 }
 
@@ -69,5 +54,3 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-

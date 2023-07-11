@@ -31,7 +31,7 @@ simple way to write commits following the Conventional Commits
 		commitTypeMenu.AddItem(emoji.Sprint(":memo:Tests"), "test")
 		commitTypeMenu.AddItem(emoji.Sprint(":books:Documentation"), "docs")
 		commitTypeMenu.AddItem(
-			emoji.Sprint(":sparkles:Style/Clean Up"), 
+			emoji.Sprint(":sparkles:Style/Clean Up"),
 			"style",
 		)
 		commitTypeMenu.AddItem(emoji.Sprint(":construction:Build"), "build")

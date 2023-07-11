@@ -79,8 +79,11 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.SetHelpCommand(&cobra.Command{ // Removing 'help' subcommand
+	// Removing 'help' subcommand
+	rootCmd.SetHelpCommand(&cobra.Command{
 		Use:    "no-help",
 		Hidden: true,
 	})
+	// Removing 'completion' subcommand
+	rootCmd.CompletionOptions.DisableDefaultCmd = true
 }

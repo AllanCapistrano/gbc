@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/kyokomi/emoji/v2"
 	"github.com/nexidian/gocliselect"
 	"github.com/spf13/cobra"
 )
@@ -23,16 +24,22 @@ simple way to write commits following the Conventional Commits
 	Run: func(cmd *cobra.Command, args []string) {
 		commitTypeMenu := gocliselect.NewMenu("Commit type?")
 
-		commitTypeMenu.AddItem("Feat", "feat")
-		commitTypeMenu.AddItem("Fix", "fix")
-		commitTypeMenu.AddItem("Chore", "chore")
-		commitTypeMenu.AddItem("Refactor", "refactor")
-		commitTypeMenu.AddItem("Test", "test")
-		commitTypeMenu.AddItem("Docs", "docs")
-		commitTypeMenu.AddItem("Style", "style")
-		commitTypeMenu.AddItem("Build", "build")
-		commitTypeMenu.AddItem("CI", "ci")
-		commitTypeMenu.AddItem("Perf", "perf")
+		commitTypeMenu.AddItem(emoji.Sprint(":rocket:Feature"), "feat")
+		commitTypeMenu.AddItem(emoji.Sprint(":bug:Bug Fix"), "fix")
+		commitTypeMenu.AddItem(emoji.Sprint(":white_check_mark:Chore"), "chore")
+		commitTypeMenu.AddItem(emoji.Sprint(":hammer:Refactor"), "refactor")
+		commitTypeMenu.AddItem(emoji.Sprint(":memo:Tests"), "test")
+		commitTypeMenu.AddItem(emoji.Sprint(":books:Documentation"), "docs")
+		commitTypeMenu.AddItem(
+			emoji.Sprint(":sparkles:Style/Clean Up"), 
+			"style",
+		)
+		commitTypeMenu.AddItem(emoji.Sprint(":construction:Build"), "build")
+		commitTypeMenu.AddItem(emoji.Sprint(":factory:CI"), "ci")
+		commitTypeMenu.AddItem(
+			emoji.Sprint(":chart_with_upwards_trend:Performance Improvement"),
+			"perf",
+		)
 
 		commitType := commitTypeMenu.Display()
 

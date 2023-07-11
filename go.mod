@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/nexidian/gocliselect v1.0.0
 	github.com/spf13/cobra v1.7.0
+    github.com/kyokomi/emoji/v2 v2.2.12
 )
 
 require (

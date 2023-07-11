@@ -3,6 +3,8 @@ github.com/buger/goterm v1.0.3/go.mod h1:HiFWV3xnkolgrBV3mY8m0X0Pumt4zg4QhbdOzQt
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
+github.com/kyokomi/emoji/v2 v2.2.12 h1:sSVA5nH9ebR3Zji1o31wu3yOwD1zKXQA2z0zUyeit60=
+github.com/kyokomi/emoji/v2 v2.2.12/go.mod h1:JUcn42DTdsXJo1SWanHh4HKDEyPaR5CqkmoirZZP9qE=
 github.com/nexidian/gocliselect v1.0.0 h1:BTxqUqqhwc/O3jJrPuvpF359FjQag7EYgwdEF9cYY+w=
 github.com/nexidian/gocliselect v1.0.0/go.mod h1:xyHtRO0Au/S+4tsEooDEj5+VZtkk+RU6RRs7q4o5TmI=
 github.com/pkg/term v1.1.0 h1:xIAAdCMh3QIAy+5FrE8Ad8XoDhEU4ufwbaSozViP9kk=

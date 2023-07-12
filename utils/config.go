@@ -1,0 +1,85 @@
+package utils
+
+import (
+	"bufio"
+	"encoding/json"
+	"fmt"
+	"os"
+	"strings"
+)
+
+type Emoji struct {
+	Feat     string `json:"feat"`
+	Fix      string `json:"fix"`
+	Chore    string `json:"chore"`
+	Refactor string `json:"refactor"`
+	Test     string `json:"test"`
+	Docs     string `json:"docs"`
+	Style    string `json:"style"`
+	Build    string `json:"build"`
+	Ci       string `json:"ci"`
+	Perf     string `json:"perf"`
+}
+
+func GetEmojis(fileName string) {
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Printf(
+			"Couldn't open the '%s' file! Check the file name and try again.\n",
+			fileName,
+		)
+		os.Exit(0)
+	}
+
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+
+	flagEmoji := false
+
+	emojiSettingInString := ""
+	var emojiSetting Emoji
+
+	for scanner.Scan() {
+		// Ignore the comments.
+		if strings.Contains(scanner.Text(), "#") {
+			continue
+		}
+
+		// Found emojis setting.
+		if strings.Contains(scanner.Text(), "emojis") {
+			flagEmoji = true
+			emojiSettingInString = "{\n"
+
+			continue
+		}
+
+		// Getting each commit emoji.
+		if flagEmoji {
+			emojiSettingInString += scanner.Text() + "\n"
+		}
+
+		// Stop the loop when finds the last commit emoji.
+		if strings.Contains(scanner.Text(), "}") && flagEmoji {
+			break
+		}
+	}
+
+	if emojiSettingInString != "" {
+		fmt.Print(emojiSettingInString) // TODO: Remove
+
+		err := json.Unmarshal([]byte(emojiSettingInString), &emojiSetting)
+		if err != nil {
+			fmt.Println("Unable to convert emoji settings to an expected type. Check the emoji settings in the config file.")
+			os.Exit(0)
+		}
+
+		fmt.Println(emojiSetting.Feat) // TODO: Remove
+	}
+
+	if err := scanner.Err(); err != nil {
+		fmt.Println("Couldn't read a line from the file.")
+		os.Exit(0)
+	}
+}

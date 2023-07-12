@@ -76,7 +76,7 @@ are available.`,
 			case "style", "clean", "cleanup", "styleclean", "stylecleanup",
 				"style/clean", "style/cleanup":
 				message = "A commit that styles source code or removes unnecessary code, including comments"
-				example = "style: format code"
+				example = "style: formatting code"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
 					message,

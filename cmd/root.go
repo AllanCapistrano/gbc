@@ -12,6 +12,8 @@ import (
 	"github.com/kyokomi/emoji/v2"
 	"github.com/nexidian/gocliselect"
 	"github.com/spf13/cobra"
+
+	"github.com/allancapistrano/gbc/config"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -23,26 +25,50 @@ simple way to write commits following the Conventional Commits
 (https://www.conventionalcommits.org/).`,
 	Run: func(cmd *cobra.Command, args []string) {
 		commitTypeMenu := gocliselect.NewMenu("Commit type?")
+		gbcEmoji := config.GetEmojis("config/gbc.conf")
 
-		commitTypeMenu.AddItem(emoji.Sprint(":rocket:Feature"), "feat")
-		commitTypeMenu.AddItem(emoji.Sprint(":bug:Bug Fix"), "fix")
-		commitTypeMenu.AddItem(emoji.Sprint(":white_check_mark:Chore"), "chore")
-		commitTypeMenu.AddItem(emoji.Sprint(":hammer:Refactor"), "refactor")
-		commitTypeMenu.AddItem(emoji.Sprint(":memo:Tests"), "test")
-		commitTypeMenu.AddItem(emoji.Sprint(":books:Documentation"), "docs")
 		commitTypeMenu.AddItem(
-			emoji.Sprint(":sparkles:Style/Clean Up"),
+			emoji.Sprintf("%sFeature", gbcEmoji.Feat),
+			"feat",
+		)
+		commitTypeMenu.AddItem(
+			emoji.Sprintf("%sBug Fix", gbcEmoji.Fix),
+			"fix",
+		)
+		commitTypeMenu.AddItem(
+			emoji.Sprintf("%sChore", gbcEmoji.Chore),
+			"chore",
+		)
+		commitTypeMenu.AddItem(
+			emoji.Sprintf("%sRefactor", gbcEmoji.Refactor),
+			"refactor",
+		)
+		commitTypeMenu.AddItem(
+			emoji.Sprintf("%sTests", gbcEmoji.Test),
+			"test",
+		)
+		commitTypeMenu.AddItem(
+			emoji.Sprintf("%sDocumentation", gbcEmoji.Docs),
+			"docs",
+		)
+		commitTypeMenu.AddItem(
+			emoji.Sprintf("%sStyle/Clean Up", gbcEmoji.Style),
 			"style",
 		)
-		commitTypeMenu.AddItem(emoji.Sprint(":construction:Build"), "build")
-		commitTypeMenu.AddItem(emoji.Sprint(":factory:CI"), "ci")
 		commitTypeMenu.AddItem(
-			emoji.Sprint(":chart_with_upwards_trend:Performance Improvement"),
+			emoji.Sprintf("%sBuild", gbcEmoji.Build),
+			"build",
+		)
+		commitTypeMenu.AddItem(
+			emoji.Sprintf("%sCI", gbcEmoji.Ci),
+			"ci",
+		)
+		commitTypeMenu.AddItem(
+			emoji.Sprintf("%sPerformance Improvement", gbcEmoji.Perf),
 			"perf",
 		)
 
 		commitType := commitTypeMenu.Display()
-
 		buffer := bufio.NewReader(os.Stdin)
 
 		fmt.Print("What commit message do you want? ")

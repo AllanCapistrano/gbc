@@ -20,33 +20,98 @@ are available.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) >= 1 && args[0] != "" {
 			commitType := strings.ToLower(args[0])
+			var message string
+			var example string
+			var commandHelp string
 
 			switch commitType {
 			case "feature", "feat":
-				fmt.Println("feat")
+				message = "A commit that adds new functionality"
+				example = "feat: new login page"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			case "bug", "fix", "bugfix":
-				fmt.Println("bugfix")
+				message = "A commit that fixes a bug"
+				example = "fix: getUser function"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			case "chore":
-				fmt.Println("chore")
+				message = "A catch-all type for any other commits"
+				example = "chore: add validations to updateUser function"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			case "refactor":
-				fmt.Println("refactor")
+				message = "A commit that refactors some functionality"
+				example = "refactor: addUser function"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			case "test", "tests":
-				fmt.Println("tests")
+				message = "A commit that adds or improves tests"
+				example = "test: add unit test to updateUser"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			case "documentation", "docs":
-				fmt.Println("docs")
+				message = "A commit that adds or improves documentation"
+				example = "docs: add docs to getUser function"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			case "style", "clean", "cleanup", "styleclean", "stylecleanup",
 				"style/clean", "style/cleanup":
-				fmt.Println("style clean up")
+				message = "A commit that styles source code or removes unnecessary code, including comments"
+				example = "style: format code"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			case "build":
-				fmt.Println("build")
+				message = "A commit that builds a new version of the project"
+				example = "build: gbc v1.0.0"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			case "ci", "continuos", "integration", "continuosintegration":
-				fmt.Println("ci")
-			case "performance", "improvement", "performanceimprovement":
-				fmt.Println("performance")
+				message = "A commit that adds or improves continuous integration to the project"
+				example = "ci: using GitHub Actions"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
+			case "performance", "improvement", "performanceimprovement", "perf":
+				message = "A commit that improves performance, without functional changes"
+				example = "perf: getUser function 2x faster"
+				commandHelp = fmt.Sprintf(
+					"%s.\n\nFor example: \n\t%s.",
+					message, 
+					example,
+				)
 			default:
 				fmt.Println("Could not find this type of confirmation! Try again.")
 				os.Exit(0)
 			}
+
+			fmt.Println(commandHelp)
 		} else {
 			fmt.Println("You need to provide the commit type. For example: gbc help build")
 			os.Exit(0)

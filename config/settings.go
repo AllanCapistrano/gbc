@@ -25,7 +25,7 @@ func GetEmojis(fileName string) {
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Printf(
-			"Couldn't open the '%s' file! Check the file name and try again.\n",
+			"Couldn't open the '%s' file! Check the file path name\n",
 			fileName,
 		)
 		os.Exit(0)

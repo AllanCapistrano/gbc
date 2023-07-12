@@ -30,7 +30,7 @@ are available.`,
 				example = "feat: new login page"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "bug", "fix", "bugfix":
@@ -38,7 +38,7 @@ are available.`,
 				example = "fix: getUser function"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "chore":
@@ -46,7 +46,7 @@ are available.`,
 				example = "chore: add validations to updateUser function"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "refactor":
@@ -54,7 +54,7 @@ are available.`,
 				example = "refactor: addUser function"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "test", "tests":
@@ -62,7 +62,7 @@ are available.`,
 				example = "test: add unit test to updateUser"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "documentation", "docs":
@@ -70,7 +70,7 @@ are available.`,
 				example = "docs: add docs to getUser function"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "style", "clean", "cleanup", "styleclean", "stylecleanup",
@@ -79,7 +79,7 @@ are available.`,
 				example = "style: format code"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "build":
@@ -87,7 +87,7 @@ are available.`,
 				example = "build: gbc v1.0.0"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "ci", "continuos", "integration", "continuosintegration":
@@ -95,7 +95,7 @@ are available.`,
 				example = "ci: using GitHub Actions"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			case "performance", "improvement", "performanceimprovement", "perf":
@@ -103,7 +103,7 @@ are available.`,
 				example = "perf: getUser function 2x faster"
 				commandHelp = fmt.Sprintf(
 					"%s.\n\nFor example: \n\t%s.",
-					message, 
+					message,
 					example,
 				)
 			default:

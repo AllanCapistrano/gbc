@@ -1,4 +1,4 @@
-package utils
+package config
 
 import (
 	"bufio"
@@ -21,7 +21,7 @@ type Emoji struct {
 	Perf     string `json:"perf"`
 }
 
-func GetEmojis(fileName string) {
+func GetEmojis(fileName string) Emoji {
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Printf(
@@ -67,19 +67,17 @@ func GetEmojis(fileName string) {
 	}
 
 	if emojiSettingInString != "" {
-		fmt.Print(emojiSettingInString) // TODO: Remove
-
 		err := json.Unmarshal([]byte(emojiSettingInString), &emojiSetting)
 		if err != nil {
 			fmt.Println("Unable to convert emoji settings to an expected type. Check the emoji settings in the config file.")
 			os.Exit(0)
 		}
-
-		fmt.Println(emojiSetting.Feat) // TODO: Remove
 	}
 
 	if err := scanner.Err(); err != nil {
 		fmt.Println("Couldn't read a line from the file.")
 		os.Exit(0)
 	}
+
+	return emojiSetting
 }

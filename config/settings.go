@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -80,4 +81,50 @@ func GetEmojis(fileName string) Emoji {
 	}
 
 	return emojiSetting
+}
+
+func EnableEmojis(fileName string) bool {
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Printf(
+			"Couldn't open the '%s' file! Check the path or file name.\n",
+			fileName,
+		)
+		os.Exit(0)
+	}
+
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+
+	flagError := false
+	var conversionError string
+	enableEmojis := false
+
+	for scanner.Scan() {
+		// Ignore the comments.
+		if strings.Contains(scanner.Text(), "#") {
+			continue
+		}
+
+		// Found emojis setting.
+		if strings.Contains(scanner.Text(), "enableEmojis") {
+			temp := strings.Split(scanner.Text(), " = ")
+
+			enableEmojis, err = strconv.ParseBool(temp[1])
+			if err != nil {
+				flagError = true
+				conversionError = temp[1]
+				break
+			}
+		}
+	}
+
+	if flagError {
+		fmt.Printf("Can't convert '%s' to bool type.", conversionError)
+		os.Exit(0)
+	}
+
+	return enableEmojis
 }

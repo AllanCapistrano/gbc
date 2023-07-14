@@ -25,8 +25,8 @@ simple way to write commits following the Conventional Commits
 (https://www.conventionalcommits.org/).`,
 	Run: func(cmd *cobra.Command, args []string) {
 		commitTypeMenu := gocliselect.NewMenu("Commit type?")
-		gbcEmojis := config.GetEmojis("config/gbc.conf")
-		enableEmojis := config.EnableEmojis("config/gbc.conf")
+		gbcEmojis := config.GetEmojis("config/gbc.conf", false)
+		enableEmojis := config.EnableEmojis("config/gbc.conf", false)
 
 		commitTypeMenu.AddItem(
 			emoji.Sprintf("%sFeature", gbcEmojis.Feat),

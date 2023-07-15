@@ -33,8 +33,8 @@ simple way to write commits following the Conventional Commits
 			fmt.Printf("gbc version %s\n", GBC_VERSION)
 		} else {
 			commitTypeMenu := gocliselect.NewMenu("Commit type?")
-			gbcEmojis := config.GetEmojis(SETTINGS_FILE_NAME, true)
-			enableEmojis := config.EnableEmojis(SETTINGS_FILE_NAME, true)
+			gbcEmojis := config.GetEmojis(SETTINGS_FILE_NAME, false)
+			enableEmojis := config.EnableEmojis(SETTINGS_FILE_NAME, false)
 
 			commitTypeMenu.AddItem(
 				emoji.Sprintf("%sFeature", gbcEmojis.Feat),

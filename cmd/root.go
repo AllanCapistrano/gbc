@@ -16,6 +16,8 @@ import (
 	"github.com/allancapistrano/gbc/config"
 )
 
+const GBCVERSION = "1.0.0"
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "gbc",
@@ -24,108 +26,114 @@ var rootCmd = &cobra.Command{
 simple way to write commits following the Conventional Commits 
 (https://www.conventionalcommits.org/).`,
 	Run: func(cmd *cobra.Command, args []string) {
-		commitTypeMenu := gocliselect.NewMenu("Commit type?")
-		gbcEmojis := config.GetEmojis("config/gbc.conf", false)
-		enableEmojis := config.EnableEmojis("config/gbc.conf", false)
 
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sFeature", gbcEmojis.Feat),
-			"feat",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sBug Fix", gbcEmojis.Fix),
-			"fix",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sChore", gbcEmojis.Chore),
-			"chore",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sRefactor", gbcEmojis.Refactor),
-			"refactor",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sTests", gbcEmojis.Test),
-			"test",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sDocumentation", gbcEmojis.Docs),
-			"docs",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sStyle/Clean Up", gbcEmojis.Style),
-			"style",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sBuild", gbcEmojis.Build),
-			"build",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sCI", gbcEmojis.Ci),
-			"ci",
-		)
-		commitTypeMenu.AddItem(
-			emoji.Sprintf("%sPerformance Improvement", gbcEmojis.Perf),
-			"perf",
-		)
+		fstatus, _ := cmd.Flags().GetBool("version")
+		if fstatus {
+			fmt.Printf("gbc version %s\n", GBCVERSION)
+		} else {
+			commitTypeMenu := gocliselect.NewMenu("Commit type?")
+			gbcEmojis := config.GetEmojis("config/gbc.conf", false)
+			enableEmojis := config.EnableEmojis("config/gbc.conf", false)
 
-		commitType := commitTypeMenu.Display()
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sFeature", gbcEmojis.Feat),
+				"feat",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sBug Fix", gbcEmojis.Fix),
+				"fix",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sChore", gbcEmojis.Chore),
+				"chore",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sRefactor", gbcEmojis.Refactor),
+				"refactor",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sTests", gbcEmojis.Test),
+				"test",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sDocumentation", gbcEmojis.Docs),
+				"docs",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sStyle/Clean Up", gbcEmojis.Style),
+				"style",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sBuild", gbcEmojis.Build),
+				"build",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sCI", gbcEmojis.Ci),
+				"ci",
+			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sPerformance Improvement", gbcEmojis.Perf),
+				"perf",
+			)
 
-		if enableEmojis {
-			var commitTypeEmoji string
+			commitType := commitTypeMenu.Display()
 
-			switch commitType {
-			case "feat":
-				commitTypeEmoji = gbcEmojis.Feat
-			case "fix":
-				commitTypeEmoji = gbcEmojis.Fix
-			case "chore":
-				commitTypeEmoji = gbcEmojis.Chore
-			case "refactor":
-				commitTypeEmoji = gbcEmojis.Refactor
-			case "test":
-				commitTypeEmoji = gbcEmojis.Test
-			case "docs":
-				commitTypeEmoji = gbcEmojis.Docs
-			case "style":
-				commitTypeEmoji = gbcEmojis.Style
-			case "build":
-				commitTypeEmoji = gbcEmojis.Build
-			case "ci":
-				commitTypeEmoji = gbcEmojis.Ci
-			case "perf":
-				commitTypeEmoji = gbcEmojis.Perf
+			if enableEmojis {
+				var commitTypeEmoji string
+
+				switch commitType {
+				case "feat":
+					commitTypeEmoji = gbcEmojis.Feat
+				case "fix":
+					commitTypeEmoji = gbcEmojis.Fix
+				case "chore":
+					commitTypeEmoji = gbcEmojis.Chore
+				case "refactor":
+					commitTypeEmoji = gbcEmojis.Refactor
+				case "test":
+					commitTypeEmoji = gbcEmojis.Test
+				case "docs":
+					commitTypeEmoji = gbcEmojis.Docs
+				case "style":
+					commitTypeEmoji = gbcEmojis.Style
+				case "build":
+					commitTypeEmoji = gbcEmojis.Build
+				case "ci":
+					commitTypeEmoji = gbcEmojis.Ci
+				case "perf":
+					commitTypeEmoji = gbcEmojis.Perf
+				}
+
+				commitType = emoji.Sprintf(
+					"%s%s",
+					commitTypeEmoji,
+					commitType,
+				)
 			}
 
-			commitType = emoji.Sprintf(
-				"%s%s",
-				commitTypeEmoji,
-				commitType,
+			buffer := bufio.NewReader(os.Stdin)
+
+			fmt.Print("What commit message do you want? ")
+
+			commitMessage, err := buffer.ReadString('\n')
+			if err != nil {
+				fmt.Println("Unable to read commit message! Try again.")
+				os.Exit(0)
+			}
+
+			commandString := fmt.Sprintf(
+				`git commit -m "%s: %s"`, commitType, commitMessage,
 			)
-		}
 
-		buffer := bufio.NewReader(os.Stdin)
+			command := exec.Command("/bin/bash", "-c", commandString)
 
-		fmt.Print("What commit message do you want? ")
-
-		commitMessage, err := buffer.ReadString('\n')
-		if err != nil {
-			fmt.Println("Unable to read commit message! Try again.")
-			os.Exit(0)
-		}
-
-		commandString := fmt.Sprintf(
-			`git commit -m "%s: %s"`, commitType, commitMessage,
-		)
-
-		command := exec.Command("/bin/bash", "-c", commandString)
-
-		err = command.Run()
-		if err != nil {
-			fmt.Println(
-				"\nCould not create the commit! Make sure you have files to commit.",
-			)
-			os.Exit(0)
+			err = command.Run()
+			if err != nil {
+				fmt.Println(
+					"\nCould not create the commit! Make sure you have files to commit.",
+				)
+				os.Exit(0)
+			}
 		}
 	},
 }
@@ -140,6 +148,8 @@ func Execute() {
 }
 
 func init() {
+	// Version flag
+	rootCmd.Flags().BoolP("version", "V", false, "Shows the gbc version.")
 	// Removing 'help' subcommand
 	rootCmd.SetHelpCommand(&cobra.Command{
 		Use:    "no-help",

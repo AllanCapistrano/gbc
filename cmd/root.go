@@ -16,7 +16,8 @@ import (
 	"github.com/allancapistrano/gbc/config"
 )
 
-const GBCVERSION = "1.0.0"
+const GBC_VERSION = "1.0.0"
+const SETTINGS_FILE_NAME = "gbc.conf"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -29,11 +30,11 @@ simple way to write commits following the Conventional Commits
 
 		fstatus, _ := cmd.Flags().GetBool("version")
 		if fstatus {
-			fmt.Printf("gbc version %s\n", GBCVERSION)
+			fmt.Printf("gbc version %s\n", GBC_VERSION)
 		} else {
 			commitTypeMenu := gocliselect.NewMenu("Commit type?")
-			gbcEmojis := config.GetEmojis("config/gbc.conf", false)
-			enableEmojis := config.EnableEmojis("config/gbc.conf", false)
+			gbcEmojis := config.GetEmojis(SETTINGS_FILE_NAME, true)
+			enableEmojis := config.EnableEmojis(SETTINGS_FILE_NAME, true)
 
 			commitTypeMenu.AddItem(
 				emoji.Sprintf("%sFeature", gbcEmojis.Feat),

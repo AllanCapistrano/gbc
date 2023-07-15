@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -27,7 +28,16 @@ type Emoji struct {
 
 func GetEmojis(fileName string, debug bool) Emoji {
 	foundSettingsFile := true
-	file, err := os.Open(fileName)
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		if debug {
+			fmt.Println("Couldn't open the user home directory.")
+		}
+		foundSettingsFile = false
+	}
+
+	filePath := filepath.Join(homeDir, ".config", "gbc", fileName)
+	file, err := os.Open(filePath)
 	if err != nil {
 		if debug {
 			fmt.Printf(
@@ -106,7 +116,16 @@ func GetEmojis(fileName string, debug bool) Emoji {
 
 func EnableEmojis(fileName string, debug bool) bool {
 	foundSettingsFile := true
-	file, err := os.Open(fileName)
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		if debug {
+			fmt.Println("Couldn't open the user home directory.")
+		}
+		foundSettingsFile = false
+	}
+
+	filePath := filepath.Join(homeDir, ".config", "gbc", fileName)
+	file, err := os.Open(filePath)
 	if err != nil {
 		if debug {
 			fmt.Printf(

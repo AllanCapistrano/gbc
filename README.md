@@ -28,6 +28,20 @@ Once you have **gbc** installed, after adding the file(s) to commit, type `gbc` 
 
 You can type `gbc --help` to see the allowed command options or `gbc help <commit type>` to see a short description and basic example of each **commit type**.
 
+### Changing the defaults emojis
+You can change the emojis in the `gbc.conf` file, available in `$HOME/.config/gbc`. Just change the `emojis = {...}`. Note that you need to use Emojis Shortcodes, you can get them in [Emoji Picker](https://github-emoji-picker.rickstaa.dev/).
+
+Make sure to follow the formatting, otherwise the change will not be applied. 
+### Allowing commits messages with emojis
+You can allow **commit messages** with emojis in the `gbc.conf` file, available in `$HOME/.config/gbc`. Just change the `enableEmojis` to `true`. 
+
+Make sure to follow the formatting, otherwise the change will not be applied.
+
+The result will be something like:
+```powershell
+:bug: fix: updateUser method
+```
+
 ### Build gbc
 To build **gbc** in your machine, you can follow the next steps:
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Downloading the necessary files.
-wget https://github.com/AllanCapistrano/gbc/releases/download/v1.0.0/gbc
-wget https://raw.githubusercontent.com/AllanCapistrano/gbc/main/config/gbc.conf
+curl -O https://github.com/AllanCapistrano/gbc/releases/download/v1.0.0/gbc
+curl -O https://raw.githubusercontent.com/AllanCapistrano/gbc/main/config/gbc.conf
 
 # Creating the config directory for gbc.
 mkdir -p $HOME/.config/gbc

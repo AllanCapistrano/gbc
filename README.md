@@ -31,15 +31,16 @@ You can type `gbc --help` to see the allowed command options or `gbc help <commi
 ### Changing the defaults emojis
 You can change the emojis in the `gbc.conf` file, available in `$HOME/.config/gbc`. Just change the `emojis = {...}`. Note that you need to use Emojis Shortcodes, you can get them in [Emoji Picker](https://github-emoji-picker.rickstaa.dev/).
 
-Make sure to follow the formatting, otherwise the change will not be applied. 
+###### Make sure to follow the formatting, otherwise the change will not be applied. ######
+
 ### Allowing commits messages with emojis
 You can allow **commit messages** with emojis in the `gbc.conf` file, available in `$HOME/.config/gbc`. Just change the `enableEmojis` to `true`. 
 
-Make sure to follow the formatting, otherwise the change will not be applied.
+###### Make sure to follow the formatting, otherwise the change will not be applied. ######
 
 The result will be something like:
 ```powershell
-:bug: fix: updateUser method
+🐛 fix: updateUser method
 ```
 
 ### Build gbc

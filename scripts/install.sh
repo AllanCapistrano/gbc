@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Downloading the necessary files.
-curl -O https://github.com/AllanCapistrano/gbc/releases/download/v1.0.0/gbc
+curl -LO https://github.com/AllanCapistrano/gbc/releases/download/v1.0.0/gbc
 curl -O https://raw.githubusercontent.com/AllanCapistrano/gbc/main/config/gbc.conf
 
 # Creating the config directory for gbc.

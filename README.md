@@ -22,6 +22,9 @@ Follow the next steps to install **gbc**:
    bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/install.sh)"
    ```
 3. You can check if **gbc** is installed by typing `gbc --version` in your terminal.
+
+### Using gbc
+Once you have **gbc** installed, after adding the file(s) to commit, type `gbc` in your terminal, select the **commit type** using the **arrows keys**, and press **enter**. After that, enter the **commit message** you want.
 ### Build gbc
 To build **gbc** in your machine, you can follow the next steps:
 

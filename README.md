@@ -25,6 +25,9 @@ Follow the next steps to install **gbc**:
 
 ### Using gbc
 Once you have **gbc** installed, after adding the file(s) to commit, type `gbc` in your terminal, select the **commit type** using the **arrows keys**, and press **enter**. After that, enter the **commit message** you want.
+
+You can type `gbc --help` to see the allowed command options or `gbc help <commit type>` to see a short description and basic example of each **commit type**.
+
 ### Build gbc
 To build **gbc** in your machine, you can follow the next steps:
 

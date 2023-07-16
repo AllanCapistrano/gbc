@@ -11,6 +11,49 @@
 
 ------------
 
+## :computer: How to use
+
+### Install gbc
+Follow the next steps to install **gbc**:
+
+1. Make sure you already have [curl](https://curl.se/) installed on your machine;
+2. Paste this command in your terminal:
+   ```powershell
+   bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/install.sh)"
+   ```
+3. You can check if **gbc** is installed by typing `gbc --version` in your terminal.
+### Build gbc
+To build **gbc** in your machine, you can follow the next steps:
+
+1. Make sure you already have [Go](https://go.dev/) installed;
+2. Clone this repository or download the `.zip` file;
+3. Open the project directory in your terminal;
+4. Install the dependencies:
+   ```powershell
+   go mod download
+   ```
+5. Then build the project:
+   ```powershell
+   go build -o bin/gbc main.go
+   ```
+To use the settings file:
+1. Create the **gbc** config directory:
+   ```powershell
+   mkdir -p $HOME/.config/gbc
+   ```
+2. Move the `gbc.conf` file into the configuration directory::
+   ```powershell
+   mv ./config/gbc.conf $HOME/.config/gbc
+   ```
+### Uninstall gbc
+To uninstall **gbc** run the following command in your terminal:
+
+```powershell
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/uninstall.sh)"
+```
+
+------------
+
 ## :man_technologist: Author ##
 
 | [![Allan Capistrano](https://github.com/AllanCapistrano.png?size=100)](https://github.com/AllanCapistrano) |

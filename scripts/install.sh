@@ -5,7 +5,7 @@ wget https://github.com/AllanCapistrano/gbc/releases/download/v1.0.0/gbc
 wget https://raw.githubusercontent.com/AllanCapistrano/gbc/main/config/gbc.conf
 
 # Creating the config directory for gbc.
-mkdir $HOME/.config/gbc
+mkdir -p $HOME/.config/gbc
 
 # Moving the CLI and settings file.
 sudo mv gbc /usr/bin

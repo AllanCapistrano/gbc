@@ -77,12 +77,19 @@ simple way to write commits following the Conventional Commits
 				emoji.Sprintf("%sPerformance Improvement", gbcEmojis.Perf),
 				"perf",
 			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sFirst Commit", gbcEmojis.FirstCommit),
+				"first_commit",
+			)
 
 			commitType := commitTypeMenu.Display()
 
 			if commitType == "" {
-				os.Exit(0)
+				os.Exit(0) // TODO: Change to log.Fatal
 			}
+
+			var commitMessage string
+			var commandString string
 
 			if enableEmojis {
 				var commitTypeEmoji string
@@ -108,6 +115,8 @@ simple way to write commits following the Conventional Commits
 					commitTypeEmoji = gbcEmojis.Ci
 				case "perf":
 					commitTypeEmoji = gbcEmojis.Perf
+				case "first_commit":
+					commitMessage = emoji.Sprintf("%s", gbcEmojis.FirstCommit)
 				}
 
 				commitType = emoji.Sprintf(
@@ -117,11 +126,17 @@ simple way to write commits following the Conventional Commits
 				)
 			}
 
-			commitMessage := userinput.GetUserInput("What commit message do you want? ", true)
-
-			commandString := fmt.Sprintf(
-				`git commit -m "%s: %s"`, commitType, commitMessage,
-			)
+			if commitType == "first_commit" {
+				commitMessage += "First commit"
+				commandString = fmt.Sprintf(
+					`git commit -m "%s"`, commitMessage,
+				)
+			} else {
+				commitMessage = userinput.GetUserInput("What commit message do you want? ", true)
+				commandString = fmt.Sprintf(
+					`git commit -m "%s: %s"`, commitType, commitMessage,
+				)
+			}
 
 			command := exec.Command("/bin/bash", "-c", commandString)
 

@@ -1,8 +1,15 @@
 <h1 align="center">Git Better Commit</h1>
 
 <p align="center">
-  <img src="./data/screenshots/gbc-execution-3x.gif" alt="gbc execution 3x">
+  <img src="./data/screenshots/gbc-v110-execution.gif" alt="gbc v1.1.0 execution">
 </p>
+
+<details>
+  <summary>With emojis</summary>
+  <p align="center">
+    <img src="./data/screenshots/gbc-v110-execution-emojis.gif" alt="gbc v1.1.0 execution with emojis">
+  </p>
+</details>
 
 ------------
 

@@ -4,7 +4,6 @@ Copyright © 2023 Allan Capistrano <allan.capistrano3@gmail.com>
 package cmd
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"os/exec"
@@ -14,6 +13,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/allancapistrano/gbc/config"
+	"github.com/allancapistrano/user-input"
 )
 
 const GBC_VERSION = "1.0.0"
@@ -116,15 +116,7 @@ simple way to write commits following the Conventional Commits
 				)
 			}
 
-			buffer := bufio.NewReader(os.Stdin)
-
-			fmt.Print("What commit message do you want? ")
-
-			commitMessage, err := buffer.ReadString('\n')
-			if err != nil {
-				fmt.Println("Unable to read commit message! Try again.")
-				os.Exit(0)
-			}
+			commitMessage := userinput.GetUserInput("What commit message do you want? ", true)
 
 			commandString := fmt.Sprintf(
 				`git commit -m "%s: %s"`, commitType, commitMessage,
@@ -132,7 +124,7 @@ simple way to write commits following the Conventional Commits
 
 			command := exec.Command("/bin/bash", "-c", commandString)
 
-			err = command.Run()
+			err := command.Run()
 			if err != nil {
 				fmt.Println(
 					"\nCould not create the commit! Make sure you have files to commit.",

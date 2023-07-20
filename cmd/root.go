@@ -6,6 +6,7 @@ package cmd
 import (
 	"fmt"
 	"log"
+	"os"
 	"os/exec"
 
 	"github.com/kyokomi/emoji/v2"
@@ -84,7 +85,7 @@ simple way to write commits following the Conventional Commits
 			commitType := commitTypeMenu.Display()
 
 			if commitType == "" {
-				log.Fatal("Could not possible get the menu option.")
+				os.Exit(0)
 			}
 
 			var commitMessage string
@@ -141,7 +142,7 @@ simple way to write commits following the Conventional Commits
 
 			err := command.Run()
 			if err != nil {
-				log.Fatal("\nCould not create the commit! Make sure you have files to commit.")
+				log.Fatal("\nCould not create the commit! Make sure you have file(s) to commit.")
 			}
 		}
 	},

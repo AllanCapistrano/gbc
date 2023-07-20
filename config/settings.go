@@ -7,6 +7,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -87,14 +88,12 @@ func GetEmojis(fileName string, debug bool) Emoji {
 		if emojiSettingInString != "" {
 			err := json.Unmarshal([]byte(emojiSettingInString), &emojiSetting)
 			if err != nil {
-				fmt.Println("Unable to convert emoji settings to an expected type. Check the emoji settings in the config file.")
-				os.Exit(0)
+				log.Fatal("Unable to convert emoji settings to an expected type. Check the emoji settings in the config file.")
 			}
 		}
 
 		if err := scanner.Err(); err != nil {
-			fmt.Println("Couldn't read a line from the file.")
-			os.Exit(0)
+			log.Fatal("Couldn't read a line from the file.")
 		}
 
 		return emojiSetting
@@ -166,8 +165,7 @@ func EnableEmojis(fileName string, debug bool) bool {
 		}
 
 		if flagError {
-			fmt.Printf("Can't convert '%s' to bool type.", conversionError)
-			os.Exit(0)
+			log.Fatalf("Can't convert '%s' to bool type.", conversionError)
 		}
 
 		return enableEmojis

@@ -79,6 +79,10 @@ simple way to write commits following the Conventional Commits
 
 			commitType := commitTypeMenu.Display()
 
+			if commitType == "" {
+				os.Exit(0)
+			}
+
 			if enableEmojis {
 				var commitTypeEmoji string
 

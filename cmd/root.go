@@ -6,7 +6,6 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"os"
 	"os/exec"
 
 	"github.com/kyokomi/emoji/v2"
@@ -77,12 +76,19 @@ simple way to write commits following the Conventional Commits
 				emoji.Sprintf("%sPerformance Improvement", gbcEmojis.Perf),
 				"perf",
 			)
+			commitTypeMenu.AddItem(
+				emoji.Sprintf("%sFirst Commit", gbcEmojis.FirstCommit),
+				"first_commit",
+			)
 
 			commitType := commitTypeMenu.Display()
 
 			if commitType == "" {
-				os.Exit(0)
+				log.Fatal("Could not possible get the menu option.")
 			}
+
+			var commitMessage string
+			var commandString string
 
 			if enableEmojis {
 				var commitTypeEmoji string
@@ -108,6 +114,8 @@ simple way to write commits following the Conventional Commits
 					commitTypeEmoji = gbcEmojis.Ci
 				case "perf":
 					commitTypeEmoji = gbcEmojis.Perf
+				case "first_commit":
+					commitMessage = emoji.Sprintf("%s", gbcEmojis.FirstCommit)
 				}
 
 				commitType = emoji.Sprintf(
@@ -117,11 +125,17 @@ simple way to write commits following the Conventional Commits
 				)
 			}
 
-			commitMessage := userinput.GetUserInput("What commit message do you want? ", true)
-
-			commandString := fmt.Sprintf(
-				`git commit -m "%s: %s"`, commitType, commitMessage,
-			)
+			if commitType == "first_commit" {
+				commitMessage += "First commit"
+				commandString = fmt.Sprintf(
+					`git commit -m "%s"`, commitMessage,
+				)
+			} else {
+				commitMessage = userinput.GetUserInput("What commit message do you want? ", true)
+				commandString = fmt.Sprintf(
+					`git commit -m "%s: %s"`, commitType, commitMessage,
+				)
+			}
 
 			command := exec.Command("/bin/bash", "-c", commandString)
 
@@ -138,7 +152,7 @@ simple way to write commits following the Conventional Commits
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
-		os.Exit(1)
+		log.Fatal("Unable to execute root command")
 	}
 }
 

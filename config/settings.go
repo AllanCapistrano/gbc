@@ -15,16 +15,17 @@ import (
 )
 
 type Emoji struct {
-	Feat     string `json:"feat"`
-	Fix      string `json:"fix"`
-	Chore    string `json:"chore"`
-	Refactor string `json:"refactor"`
-	Test     string `json:"test"`
-	Docs     string `json:"docs"`
-	Style    string `json:"style"`
-	Build    string `json:"build"`
-	Ci       string `json:"ci"`
-	Perf     string `json:"perf"`
+	Feat        string `json:"feat"`
+	Fix         string `json:"fix"`
+	Chore       string `json:"chore"`
+	Refactor    string `json:"refactor"`
+	Test        string `json:"test"`
+	Docs        string `json:"docs"`
+	Style       string `json:"style"`
+	Build       string `json:"build"`
+	Ci          string `json:"ci"`
+	Perf        string `json:"perf"`
+	FirstCommit string `json:"first_commit"`
 }
 
 func GetEmojis(fileName string, debug bool) Emoji {
@@ -100,16 +101,17 @@ func GetEmojis(fileName string, debug bool) Emoji {
 	}
 
 	return Emoji{
-		Feat:     ":rocket:",
-		Fix:      ":bug:",
-		Chore:    ":white_check_mark:",
-		Refactor: ":hammer:",
-		Test:     ":memo:",
-		Docs:     ":books:",
-		Style:    ":sparkles:",
-		Build:    ":construction:",
-		Ci:       ":factory:",
-		Perf:     ":chart_with_upwards_trend:",
+		Feat:        ":rocket:",
+		Fix:         ":bug:",
+		Chore:       ":white_check_mark:",
+		Refactor:    ":hammer:",
+		Test:        ":memo:",
+		Docs:        ":books:",
+		Style:       ":sparkles:",
+		Build:       ":construction:",
+		Ci:          ":factory:",
+		Perf:        ":chart_with_upwards_trend:",
+		FirstCommit: ":1st_place_medal:",
 	}
 }
 

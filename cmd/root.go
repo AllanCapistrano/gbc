@@ -6,7 +6,6 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"os"
 	"os/exec"
 
 	"github.com/kyokomi/emoji/v2"
@@ -85,7 +84,7 @@ simple way to write commits following the Conventional Commits
 			commitType := commitTypeMenu.Display()
 
 			if commitType == "" {
-				os.Exit(0) // TODO: Change to log.Fatal
+				log.Fatal("Could not possible get the menu option.")
 			}
 
 			var commitMessage string
@@ -153,7 +152,7 @@ simple way to write commits following the Conventional Commits
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
-		os.Exit(1)
+		log.Fatal("Unable to execute root command")
 	}
 }
 

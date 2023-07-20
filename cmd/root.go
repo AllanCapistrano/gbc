@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 
@@ -126,10 +127,7 @@ simple way to write commits following the Conventional Commits
 
 			err := command.Run()
 			if err != nil {
-				fmt.Println(
-					"\nCould not create the commit! Make sure you have files to commit.",
-				)
-				os.Exit(0)
+				log.Fatal("\nCould not create the commit! Make sure you have files to commit.")
 			}
 		}
 	},

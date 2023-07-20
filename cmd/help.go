@@ -5,7 +5,7 @@ package cmd
 
 import (
 	"fmt"
-	"os"
+	"log"
 	"strings"
 
 	"github.com/spf13/cobra"
@@ -107,14 +107,12 @@ are available.`,
 					example,
 				)
 			default:
-				fmt.Println("Could not find this type of confirmation! Try again.")
-				os.Exit(0)
+				log.Fatal("Could not find this type of confirmation! Try again.")
 			}
 
 			fmt.Println(commandHelp)
 		} else {
-			fmt.Println("You need to provide the commit type. For example: gbc help build")
-			os.Exit(0)
+			log.Fatal("You need to provide the commit type. For example: gbc help build")
 		}
 
 	},

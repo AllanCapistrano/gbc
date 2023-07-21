@@ -60,9 +60,17 @@ To build **gbc** in your machine, you can follow the next steps:
    ```powershell
    go mod download
    ```
+   or
+   ```powershell
+   go mod tidy
+   ```
 5. Then build the project:
    ```powershell
    go build -o bin/gbc main.go
+   ```
+   If you get [`GLIBC not found`](https://github.com/AllanCapistrano/gbc/issues/13) error, try:
+   ```powershell
+   CGO_ENABLED=0 go build -o bin/gbc main.go
    ```
 To use the settings file:
 1. Create the **gbc** config directory:

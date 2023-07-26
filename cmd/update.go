@@ -16,8 +16,12 @@ var updateCmd = &cobra.Command{
 	Short: "Update gbc to the latest version available.",
 	Long:  `Update gbc to the latest version available.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if !config.IsLatestVersion(GBC_VERSION) {
-			//TODO
+		// if !config.IsLatestVersion(GBC_VERSION) {
+		if !config.IsLatestVersion("v1.0.0") {
+			// TODO: Just for testing, remove it later
+			option := config.Option{Type: "rebuild", Value: ":eyes:"}
+			config.UpdateEmojiSettings("gbc.conf", option, true)
+
 			fmt.Println("It is not the latest version")
 		} else {
 			fmt.Println("It is the latest version")

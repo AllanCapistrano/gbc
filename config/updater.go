@@ -7,6 +7,7 @@ import (
 	"github.com/tcnksm/go-latest"
 )
 
+// //Checks if gbc is at the latest version by passing the current version.
 func IsLatestVersion(version string) bool {
 	githubTag := &latest.GithubTag{
 		Owner:      "AllanCapistrano",

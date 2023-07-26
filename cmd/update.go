@@ -22,8 +22,13 @@ var updateCmd = &cobra.Command{
 			option := config.Option{Type: "rebuild", Value: ":eyes:"}
 			config.UpdateEmojiSettings("gbc.conf", option, true)
 
+			// TODO: Just for testing, remove it later
+			option2 := config.Option{Comment: "Testing", Type: "hello", Value: "world"}
+			config.AddNewSetting("gbc.conf", option2, true)
+
 			fmt.Println("It is not the latest version")
 		} else {
+			// TODO: Change the message.
 			fmt.Println("It is the latest version")
 		}
 

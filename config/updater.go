@@ -96,3 +96,46 @@ func UpdateEmojiSettings(fileName string, newOption Option, debug bool) {
 
 	}
 }
+
+// Adds a new option with a comment to fileName. You can enable or disable debug 
+// messages.
+func AddNewSetting(fileName string, option Option, debug bool) {
+	foundSettingsFile := true
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		if debug {
+			fmt.Println("Couldn't open the user home directory.")
+		}
+		foundSettingsFile = false
+	}
+
+	filePath := filepath.Join(homeDir, ".config", "gbc", fileName)
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		if debug {
+			fmt.Printf(
+				"Couldn't open the '%s' file! Check the path or file name.\n",
+				fileName,
+			)
+		}
+		foundSettingsFile = false
+	}
+
+	if foundSettingsFile {
+		lines := strings.Split(string(file), "\n")
+		comment := fmt.Sprintf("# %s\n", option.Comment)
+		setting := fmt.Sprintf("%s = %s", option.Type, option.Value)
+
+		// Adding the new option at the end of the file.
+		lines = append(lines, comment, setting)
+
+		output := strings.Join(lines, "\n")
+		err = os.WriteFile(filePath, []byte(output), 0644)
+		if err != nil {
+			log.Fatalf(
+				"Could not write to file '%s'! Check the path or file name.\n",
+				fileName,
+			)
+		}
+	}
+}

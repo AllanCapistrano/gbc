@@ -1,21 +1,20 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2023 Allan Capistrano <allan.capistrano3@gmail.com>
 */
 package cmd
 
 import (
 	"fmt"
 
-	"github.com/spf13/cobra"
 	"github.com/allancapistrano/gbc/config"
+	"github.com/spf13/cobra"
 )
 
 // updateCmd represents the update command
 var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Update gbc to the latest version available.",
-	Long: `Update gbc to the latest version available.`,
+	Long:  `Update gbc to the latest version available.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if !config.IsLatestVersion(GBC_VERSION) {
 			//TODO

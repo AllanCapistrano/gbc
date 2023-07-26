@@ -1,3 +1,6 @@
+/*
+Copyright © 2023 Allan Capistrano <allan.capistrano3@gmail.com>
+*/
 package config
 
 import (

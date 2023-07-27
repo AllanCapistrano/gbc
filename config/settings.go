@@ -28,6 +28,8 @@ type Emoji struct {
 	FirstCommit string `json:"first_commit"`
 }
 
+// Get the emojis from the fileName. You can enable or disable debug messages.
+// If the fileName didn't exist, default emojis are used.
 func GetEmojis(fileName string, debug bool) Emoji {
 	foundSettingsFile := true
 	homeDir, err := os.UserHomeDir()
@@ -115,6 +117,8 @@ func GetEmojis(fileName string, debug bool) Emoji {
 	}
 }
 
+// Enable or disable emojis in commit messages. You can enable or disable 
+// debug messages.
 func EnableEmojis(fileName string, debug bool) bool {
 	foundSettingsFile := true
 	homeDir, err := os.UserHomeDir()

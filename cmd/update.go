@@ -18,8 +18,7 @@ var updateCmd = &cobra.Command{
 	Short: "Update gbc to the latest version available.",
 	Long:  `Update gbc to the latest version available.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		// if !config.IsLatestVersion(GBC_VERSION) {
-		if !config.IsLatestVersion("v1.0.0") { // TODO: Use GBC_VERSION constant
+		if !config.IsLatestVersion(GBC_VERSION) {
 			fmt.Printf(
 				"It is not the latest version. Updating to v%s\n",
 				GBC_VERSION,

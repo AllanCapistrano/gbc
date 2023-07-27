@@ -32,7 +32,7 @@ var updateCmd = &cobra.Command{
 				log.Fatal("\nUnable to update gbc to the latest version.")
 			}
 		} else {
-			fmt.Println("gbc is already in the last version.")
+			fmt.Println("gbc is already at the latest version.")
 		}
 
 	},

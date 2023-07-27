@@ -25,7 +25,7 @@ var updateCmd = &cobra.Command{
 				GBC_VERSION,
 			)
 
-			commandString := "./scripts/update.sh" // TODO: Change command
+			commandString := `bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/feat/updater/scripts/update.sh)"`
 			command := exec.Command("/bin/bash", "-c", commandString)
 
 			err := command.Run()

@@ -5,6 +5,8 @@ package cmd
 
 import (
 	"fmt"
+	"log"
+	"os/exec"
 
 	"github.com/allancapistrano/gbc/config"
 	"github.com/spf13/cobra"
@@ -17,16 +19,19 @@ var updateCmd = &cobra.Command{
 	Long:  `Update gbc to the latest version available.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		// if !config.IsLatestVersion(GBC_VERSION) {
-		if !config.IsLatestVersion("v1.0.0") {
-			// TODO: Just for testing, remove it later
-			option := config.Option{Type: "rebuild", Value: ":eyes:"}
-			config.UpdateEmojiSettings("gbc.conf", option, true)
+		if !config.IsLatestVersion("v1.0.0") { // TODO: Use GBC_VERSION constant
+			fmt.Printf(
+				"It is not the latest version. Updating to v%s\n",
+				GBC_VERSION,
+			)
 
-			// TODO: Just for testing, remove it later
-			option2 := config.Option{Comment: "Testing", Type: "hello", Value: "world"}
-			config.AddNewSetting("gbc.conf", option2, true)
+			commandString := "./scripts/update.sh" // TODO: Change command
+			command := exec.Command("/bin/bash", "-c", commandString)
 
-			fmt.Println("It is not the latest version")
+			err := command.Run()
+			if err != nil {
+				log.Fatal("\nUnable to update gbc to the latest version.")
+			}
 		} else {
 			// TODO: Change the message.
 			fmt.Println("It is the latest version")

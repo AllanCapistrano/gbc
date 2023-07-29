@@ -36,3 +36,4 @@ jobs:
           prerelease: false
           files: |
             bin/gbc
+            bin/gbc-arm

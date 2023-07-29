@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os/exec"
+	"runtime"
 
 	"github.com/allancapistrano/gbc/config"
 	"github.com/spf13/cobra"
@@ -23,8 +24,14 @@ var updateCmd = &cobra.Command{
 				"It is not the latest version. Updating to v%s\n",
 				GBC_VERSION,
 			)
+			var commandString string
 
-			commandString := `bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/update.sh)"`
+			if runtime.GOOS == "android" {
+				commandString = `bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/update-termux.sh)"`
+			} else {
+				commandString = `bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/update.sh)"`
+			}
+
 			command := exec.Command("/bin/bash", "-c", commandString)
 
 			err := command.Run()

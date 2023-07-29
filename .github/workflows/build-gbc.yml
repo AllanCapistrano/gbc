@@ -26,6 +26,9 @@ jobs:
       - name: Build
         run: CGO_ENABLED=0 go build -o bin/gbc main.go
 
+      - name: Build for ARM
+        run: GOOS=android GOARCH=arm64 CGO_ENABLED=0 go build -o bin/gbc-arm main.go
+
       - name: Automatic Releases
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:

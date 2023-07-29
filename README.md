@@ -33,7 +33,7 @@ Follow the next steps to install **gbc**:
 ### Install gbc for Termux
 Follow the next steps to install **gbc** for [Termux](https://termux.dev/en/):
 
-1. Make sure you already have [curl](https://curl.se/) installed on your machine;
+1. Make sure you already have [curl](https://curl.se/) installed;
 2. Paste this command in your terminal:
    ```powershell
    bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/install-termux.sh)"
@@ -96,6 +96,13 @@ To uninstall **gbc** run the following command in your terminal:
 
 ```powershell
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/uninstall.sh)"
+```
+
+### Uninstall gbc from Termux
+To uninstall **gbc** from [Termux](https://termux.dev/en/) run the following command:
+
+```powershell
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/uninstall-termux.sh)"
 ```
 
 ------------

@@ -17,7 +17,7 @@ import (
 	"github.com/allancapistrano/user-input"
 )
 
-const GBC_VERSION = "1.1.1"
+const GBC_VERSION = "1.2.0"
 const SETTINGS_FILE_NAME = "gbc.conf"
 
 // rootCmd represents the base command when called without any subcommands

@@ -3,7 +3,7 @@ name: Build gbc for arm64 architecture
 on:
   push:
     tags:
-      - "av*"
+      - "a*"
 
 permissions: write-all
 

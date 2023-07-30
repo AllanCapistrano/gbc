@@ -20,90 +20,115 @@
 
 ## :computer: How to use
 
-### Install gbc
-Follow the next steps to install **gbc**:
+<details open>
+  <summary><h3>Install gbc</h3></summary>
+  
+  Follow the next steps to install **gbc**:
 
-1. Make sure you already have [curl](https://curl.se/) installed on your machine;
-2. Paste this command in your terminal:
-   ```powershell
-   bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/install.sh)"
-   ```
-3. You can check if **gbc** is installed by typing `gbc --version` in your terminal.
+  1. Make sure you already have [curl](https://curl.se/) installed on your machine;
+  2. Paste this command in your terminal:
+     ```powershell
+     bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/install.sh)"
+     ```
+  3. You can check if **gbc** is installed by typing `gbc --version` in your terminal.
+</details>
 
-### Install gbc for Termux
-Follow the next steps to install **gbc** for [Termux](https://termux.dev/en/):
+<details>
+  <summary><h3>Install gbc for Termux</h3></summary>
+  
+  Follow the next steps to install **gbc** for [Termux](https://termux.dev/en/):
+  
+  1. Make sure you already have [curl](https://curl.se/) installed;
+  2. Paste this command in your terminal:
+     ```powershell
+     bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/install-termux.sh)"
+     ```
+  3. You can check if **gbc** is installed by typing `gbc --version` in your terminal.
+</details>
 
-1. Make sure you already have [curl](https://curl.se/) installed;
-2. Paste this command in your terminal:
-   ```powershell
-   bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/install-termux.sh)"
-   ```
-3. You can check if **gbc** is installed by typing `gbc --version` in your terminal.
+<details>
+  <summary><h3>Using gbc</h3></summary>
+  
+  Once you have **gbc** installed, after adding the file(s) to commit, type `gbc` in your terminal, select the **commit type** using the **arrows keys**, and press **enter**. After that, enter the **commit message** you want.
 
-### Using gbc
-Once you have **gbc** installed, after adding the file(s) to commit, type `gbc` in your terminal, select the **commit type** using the **arrows keys**, and press **enter**. After that, enter the **commit message** you want.
+  You can type `gbc --help` to see the allowed command options or `gbc help <commit type>` to see a short description and basic example of each **commit type**.
+</details>
 
-You can type `gbc --help` to see the allowed command options or `gbc help <commit type>` to see a short description and basic example of each **commit type**.
+<details>
+  <summary><h3>Changing the defaults emojis</h3></summary>
+  
+  You can change the emojis in the `gbc.conf` file, available in `$HOME/.config/gbc`. Just change the `emojis = {...}`. Note that you need to use Emojis Shortcodes, you can get them in [Emoji Picker](https://github-emoji-picker.rickstaa.dev/).
+  
+  ###### Make sure to follow the formatting, otherwise the change will not be applied. ######
+</details>
 
-### Changing the defaults emojis
-You can change the emojis in the `gbc.conf` file, available in `$HOME/.config/gbc`. Just change the `emojis = {...}`. Note that you need to use Emojis Shortcodes, you can get them in [Emoji Picker](https://github-emoji-picker.rickstaa.dev/).
+<details>
+  <summary><h3>Allowing commits messages with emojis</h3></summary>
+  
+  You can allow **commit messages with emojis** in the `gbc.conf` file, available in `$HOME/.config/gbc`. Just change the `enableEmojis` to `true`. 
+  
+  ###### Make sure to follow the formatting, otherwise the change will not be applied. ######
 
-###### Make sure to follow the formatting, otherwise the change will not be applied. ######
+  The result will be something like:
+  ```powershell
+  🐛 fix: updateUser method
+  ```
+</details>
 
-### Allowing commits messages with emojis
-You can allow **commit messages** with emojis in the `gbc.conf` file, available in `$HOME/.config/gbc`. Just change the `enableEmojis` to `true`. 
+<details>
+  <summary><h3>Build gbc</h3></summary>
+  
+  To build **gbc** in your machine, you can follow the next steps:
+  
+  1. Make sure you already have [Go](https://go.dev/) installed;
+  2. Clone this repository or download the `.zip` file;
+  3. Open the project directory in your terminal;
+  4. Install the dependencies:
+     ```powershell
+     go mod download
+     ```
+     or
+     ```powershell
+     go mod tidy
+     ```
+  5. Then build the project:
+     ```powershell
+     go build -o bin/gbc main.go
+     ```
+     If you get [`GLIBC not found`](https://github.com/AllanCapistrano/gbc/issues/13) error, try:
+     ```powershell
+     CGO_ENABLED=0 go build -o bin/gbc main.go
+     ```
+  To use the settings file:
+  1. Create the **gbc** config directory:
+     ```powershell
+     mkdir -p $HOME/.config/gbc
+     ```
+  2. Move the `gbc.conf` file into the configuration directory::
+     ```powershell
+     mv ./config/gbc.conf $HOME/.config/gbc
+     ```
+</details>
 
-###### Make sure to follow the formatting, otherwise the change will not be applied. ######
+<details>
+  <summary><h3>Uninstall gbc</h3></summary>
+  
+  To uninstall **gbc** run the following command in your terminal:
+  
+  ```powershell
+  bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/uninstall.sh)"
+  ```
+</details>
 
-The result will be something like:
-```powershell
-🐛 fix: updateUser method
-```
-
-### Build gbc
-To build **gbc** in your machine, you can follow the next steps:
-
-1. Make sure you already have [Go](https://go.dev/) installed;
-2. Clone this repository or download the `.zip` file;
-3. Open the project directory in your terminal;
-4. Install the dependencies:
-   ```powershell
-   go mod download
-   ```
-   or
-   ```powershell
-   go mod tidy
-   ```
-5. Then build the project:
-   ```powershell
-   go build -o bin/gbc main.go
-   ```
-   If you get [`GLIBC not found`](https://github.com/AllanCapistrano/gbc/issues/13) error, try:
-   ```powershell
-   CGO_ENABLED=0 go build -o bin/gbc main.go
-   ```
-To use the settings file:
-1. Create the **gbc** config directory:
-   ```powershell
-   mkdir -p $HOME/.config/gbc
-   ```
-2. Move the `gbc.conf` file into the configuration directory::
-   ```powershell
-   mv ./config/gbc.conf $HOME/.config/gbc
-   ```
-### Uninstall gbc
-To uninstall **gbc** run the following command in your terminal:
-
-```powershell
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/uninstall.sh)"
-```
-
-### Uninstall gbc from Termux
-To uninstall **gbc** from [Termux](https://termux.dev/en/) run the following command:
-
-```powershell
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/uninstall-termux.sh)"
-```
+<details>
+  <summary><h3>Uninstall gbc from Termux</h3></summary>
+  
+  To uninstall **gbc** from [Termux](https://termux.dev/en/) run the following command:
+  
+  ```powershell
+  bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/AllanCapistrano/gbc/main/scripts/uninstall-termux.sh)"
+  ```
+</details>
 
 ------------
 
